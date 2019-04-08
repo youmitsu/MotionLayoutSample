@@ -20,6 +20,7 @@
                 android:id="@+id/nickname_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                motion:layout_constraintVertical_weight="1"
                 motion:layout_constraintBottom_toTopOf="@id/edit_text"
                 motion:layout_constraintStart_toStartOf="parent"
                 android:text="ニックネーム"
@@ -28,20 +29,21 @@
                 android:id="@+id/nickname_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="end"
+                android:gravity="start"
                 android:visibility="invisible"
                 motion:layout_constraintBottom_toTopOf="@id/edit_text"
+                motion:layout_constraintStart_toStartOf="parent"
                 motion:layout_constraintEnd_toEndOf="parent"
-                motion:layout_constraintStart_toEndOf="@id/nickname_title"
                 android:text="ルナやますさこ"/>
         <Constraint
                 android:id="@+id/edit_text"
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:gravity="left"
+                motion:layout_constraintVertical_weight="6"
                 motion:layout_constraintStart_toStartOf="parent"
                 motion:layout_constraintEnd_toEndOf="parent"
-                motion:layout_constraintTop_toBottomOf="@id/nickname_value"
+                motion:layout_constraintTop_toBottomOf="@id/nickname_title"
                 motion:layout_constraintBottom_toBottomOf="parent"
         />
     </ConstraintSet>
