@@ -2,8 +2,10 @@
 <android.support.constraint.motion.MotionLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_marginTop="100dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/motion_layout"
         app:layoutDescription="@xml/activity_scene_test"
 >
 
@@ -11,8 +13,8 @@
             android:id="@+id/nickname_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintBottom_toBottomOf="@id/nickname_value"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/nickname_value"
             android:text="ニックネーム"
@@ -23,32 +25,21 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="end"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/edit_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/nickname_title"
             android:text="ルナやますさこ"
     />
-
-    <TextView
-            android:id="@+id/nickname_title_sub"
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/edit_text"
-            android:text="ニックネーム"/>
 
     <EditText
             android:id="@+id/edit_text"
             android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:gravity="end"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/nickname_title_sub"
+            app:layout_constraintTop_toBottomOf="@id/nickname_value"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
 </android.support.constraint.motion.MotionLayout>

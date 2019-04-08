@@ -1,15 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MotionScene
-        xmlns:motion="http://schemas.android.com/apk/res-auto">
+        xmlns:motion="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
     <Transition
-            motion:constraintSetStart="@layout/activity_test"
-            motion:constraintSetEnd="@layout/activity_test_end"
-            motion:duration="1000">
+            motion:constraintSetStart="@id/start"
+            motion:constraintSetEnd="@id/end"
+            motion:duration="500">
 
-        <OnClick motion:target="@id/nickname_title_sub"/>
+        <OnClick motion:target="@id/motion_layout"/>
 
     </Transition>
 
+    <ConstraintSet android:id="@+id/start">
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+                android:id="@+id/nickname_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                motion:layout_constraintBottom_toTopOf="@id/edit_text"
+                motion:layout_constraintStart_toStartOf="parent"
+                android:text="ニックネーム"
+        />
+        <Constraint
+                android:id="@+id/nickname_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:visibility="invisible"
+                motion:layout_constraintBottom_toTopOf="@id/edit_text"
+                motion:layout_constraintEnd_toEndOf="parent"
+                motion:layout_constraintStart_toEndOf="@id/nickname_title"
+                android:text="ルナやますさこ"/>
+        <Constraint
+                android:id="@+id/edit_text"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:gravity="left"
+                motion:layout_constraintStart_toStartOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent"
+                motion:layout_constraintTop_toBottomOf="@id/nickname_value"
+                motion:layout_constraintBottom_toBottomOf="parent"
+        />
+    </ConstraintSet>
 
 </MotionScene>
