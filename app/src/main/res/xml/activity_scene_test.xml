@@ -7,9 +7,9 @@
             motion:constraintSetStart="@id/start"
             motion:constraintSetEnd="@id/end"
             motion:duration="200"
-            motion:interpolator="linear">
+            motion:interpolator="easeInOut">
 
-        <OnClick motion:target="@id/motion_layout"/>
+        <!--<OnClick motion:target="@id/nickname_value"/>-->
 
     </Transition>
 
@@ -49,6 +49,8 @@
                 android:gravity="left"
                 android:alpha="1"
                 android:visibility="visible"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 motion:layout_constraintStart_toStartOf="parent"
                 motion:layout_constraintEnd_toEndOf="parent"
                 motion:layout_constraintTop_toTopOf="parent"
