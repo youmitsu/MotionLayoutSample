@@ -31,7 +31,7 @@
 
         <Constraint
                 android:id="@+id/nickname_value"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:gravity="end|center_vertical"
                 android:paddingEnd="10dp"
@@ -39,10 +39,8 @@
                 android:alpha="0"
                 motion:layout_constraintTop_toTopOf="parent"
                 motion:layout_constraintBottom_toBottomOf="parent"
-                motion:layout_constraintEnd_toEndOf="parent"
                 motion:layout_constraintStart_toStartOf="parent"
-                android:text="ルナやますさこ"
-        />
+                android:text="ルナやますさこ"/>
 
         <Constraint
                 android:id="@id/edit_text"
