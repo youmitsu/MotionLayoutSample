@@ -6,7 +6,8 @@
     <Transition
             motion:constraintSetStart="@id/start"
             motion:constraintSetEnd="@id/end"
-            motion:duration="500">
+            motion:duration="200"
+            motion:interpolator="linear">
 
         <OnClick motion:target="@id/motion_layout"/>
 
@@ -16,36 +17,44 @@
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
+
         <Constraint
-                android:id="@+id/nickname_title"
+                android:id="@id/nickname_title"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                motion:layout_constraintVertical_weight="1"
+                android:layout_height="0dp"
+                android:gravity="start|center_vertical"
+                android:paddingStart="10dp"
+                android:textSize="10sp"
+                motion:layout_constraintTop_toTopOf="parent"
                 motion:layout_constraintBottom_toTopOf="@id/edit_text"
                 motion:layout_constraintStart_toStartOf="parent"
-                android:text="ニックネーム"
-        />
+                motion:layout_constraintEnd_toEndOf="parent"/>
+
         <Constraint
                 android:id="@+id/nickname_value"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:visibility="invisible"
-                motion:layout_constraintBottom_toTopOf="@id/edit_text"
-                motion:layout_constraintStart_toStartOf="parent"
+                android:layout_height="0dp"
+                android:gravity="end|center_vertical"
+                android:paddingEnd="10dp"
+                android:textSize="15sp"
+                android:alpha="0"
+                motion:layout_constraintTop_toTopOf="parent"
+                motion:layout_constraintBottom_toBottomOf="parent"
                 motion:layout_constraintEnd_toEndOf="parent"
-                android:text="ルナやますさこ"/>
+                motion:layout_constraintStart_toStartOf="parent"
+                android:text="ルナやますさこ"
+        />
+
         <Constraint
-                android:id="@+id/edit_text"
+                android:id="@id/edit_text"
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:gravity="left"
-                motion:layout_constraintVertical_weight="6"
+                android:alpha="1"
                 motion:layout_constraintStart_toStartOf="parent"
                 motion:layout_constraintEnd_toEndOf="parent"
-                motion:layout_constraintTop_toBottomOf="@id/nickname_title"
-                motion:layout_constraintBottom_toBottomOf="parent"
-        />
+                motion:layout_constraintTop_toTopOf="parent"
+                motion:layout_constraintBottom_toBottomOf="parent"/>
     </ConstraintSet>
 
 </MotionScene>
