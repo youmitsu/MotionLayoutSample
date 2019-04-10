@@ -1,55 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.motion.MotionLayout
+<android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/motion_layout"
-        app:layoutDescription="@xml/activity_scene_test"
+        android:layout_margin="5dp"
 >
 
-    <TextView
-            android:id="@+id/nickname_title"
+    <View
+            android:id="@+id/above_divider"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="start|center_vertical"
-            android:paddingStart="10dp"
-            android:textSize="15sp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="1dp"
+            android:background="@color/design_default_color_primary_dark"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/nickname_value"
-            android:text="ニックネーム"
-    />
-
-    <TextView
-            android:id="@+id/nickname_value"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="end|center_vertical"
-            android:paddingEnd="10dp"
-            android:textSize="15sp"
-            android:ellipsize="end"
-            android:singleLine="true"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/nickname_title"
+            app:layout_constraintBottom_toTopOf="@id/edit_text"
     />
 
-    <EditText
+    <jp.co.youmitsu.myapplication.CustomMotionEditTextLayout
             android:id="@+id/edit_text"
-            android:layout_height="wrap_content"
             android:layout_width="0dp"
-            android:alpha="0"
-            android:visibility="invisible"
-            android:textSize="15sp"
-            android:inputType="text"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
+            android:layout_height="60dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+    />
 
-</android.support.constraint.motion.MotionLayout>
+    <View
+            android:id="@+id/below_divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/design_default_color_primary_dark"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_text"
+    />
+</android.support.constraint.ConstraintLayout>

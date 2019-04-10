@@ -9,7 +9,7 @@
             motion:duration="200"
             motion:interpolator="easeInOut">
 
-        <!--<OnClick motion:target="@id/nickname_value"/>-->
+        <OnClick motion:target="@id/nickname_value"/>
 
     </Transition>
 
