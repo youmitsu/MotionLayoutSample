@@ -6,9 +6,11 @@ import android.databinding.ObservableField
 import android.support.constraint.motion.MotionLayout
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.inputmethod.InputMethodManager
+import android.widget.FrameLayout
 import jp.co.youmitsu.myapplication.databinding.LayoutCustomMotionEdittextBinding
 
-class CustomMotionEditTextLayout : MotionLayout {
+class CustomMotionEditTextLayout : FrameLayout {
 
     private val binding: LayoutCustomMotionEdittextBinding
     private val _title = ObservableField<String>("")
@@ -23,6 +25,11 @@ class CustomMotionEditTextLayout : MotionLayout {
         set(value) {
             _value.set(value)
         }
+
+    //TODO: imm依存させるどうなんだろう
+    private val imm: InputMethodManager by lazy {
+        context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    }
 
     constructor(context: Context) : this(context, null)
 
@@ -39,6 +46,38 @@ class CustomMotionEditTextLayout : MotionLayout {
         val inflater = LayoutInflater.from(context)
         binding = DataBindingUtil.inflate(inflater, R.layout.layout_custom_motion_edittext, this, true)
         binding.data = this
+        initCallbacks()
+    }
+
+    private fun initCallbacks() {
+        binding.motionLayout.setTransitionListener(object : MotionLayout.TransitionListener {
+            override fun onTransitionChange(p0: MotionLayout?, p1: Int, p2: Int, p3: Float) {
+            }
+
+            override fun onTransitionCompleted(p0: MotionLayout?, currentId: Int) {
+                when (currentId) {
+                    R.id.start -> {
+                        hideKeyboard()
+                    }
+                    R.id.end -> {
+                        showKeyboard()
+                    }
+                }
+            }
+        })
+    }
+
+    private fun showKeyboard() {
+        binding.editText.apply {
+            requestFocus()
+            setSelection(length())
+        }
+        imm.showSoftInput(binding.editText, InputMethodManager.SHOW_IMPLICIT)
+    }
+
+    private fun hideKeyboard() {
+        binding.editText.clearFocus()
+        imm.hideSoftInputFromWindow(binding.motionLayout.windowToken, 0)
     }
 
 }
