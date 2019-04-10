@@ -50,6 +50,14 @@ class CustomMotionEditTextLayout : FrameLayout {
     }
 
     private fun initCallbacks() {
+        binding.editText.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                focusToEditText()
+            } else {
+                binding.motionLayout.transitionToStart()
+                clearFocusOfEditText()
+            }
+        }
         binding.motionLayout.setTransitionListener(object : MotionLayout.TransitionListener {
             override fun onTransitionChange(p0: MotionLayout?, p1: Int, p2: Int, p3: Float) {
             }
@@ -57,26 +65,28 @@ class CustomMotionEditTextLayout : FrameLayout {
             override fun onTransitionCompleted(p0: MotionLayout?, currentId: Int) {
                 when (currentId) {
                     R.id.start -> {
-                        hideKeyboard()
+                        clearFocusOfEditText()
                     }
                     R.id.end -> {
-                        showKeyboard()
+                        focusToEditText()
                     }
                 }
             }
         })
     }
 
+    private fun focusToEditText() = binding.editText.apply {
+        requestFocus()
+        setSelection(length())
+    }
+
+    private fun clearFocusOfEditText() = binding.editText.clearFocus()
+
     private fun showKeyboard() {
-        binding.editText.apply {
-            requestFocus()
-            setSelection(length())
-        }
         imm.showSoftInput(binding.editText, InputMethodManager.SHOW_IMPLICIT)
     }
 
     private fun hideKeyboard() {
-        binding.editText.clearFocus()
         imm.hideSoftInputFromWindow(binding.motionLayout.windowToken, 0)
     }
 

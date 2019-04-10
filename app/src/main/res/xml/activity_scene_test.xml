@@ -10,7 +10,6 @@
             motion:interpolator="easeInOut">
 
         <OnClick motion:target="@id/nickname_value"/>
-        <OnClick motion:target="@id/motion_layout"/>
 
     </Transition>
 
