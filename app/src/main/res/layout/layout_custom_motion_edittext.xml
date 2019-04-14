@@ -30,18 +30,19 @@
         <TextView
                 android:id="@+id/nickname_value"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="end|center_vertical"
                 android:paddingEnd="10dp"
                 android:textSize="15sp"
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="@{data.value}"
+                android:clickable="true"
+                android:focusable="true"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/nickname_title"
-        />
+                app:layout_constraintStart_toEndOf="@id/nickname_title"/>
 
         <EditText
                 android:id="@+id/edit_text"

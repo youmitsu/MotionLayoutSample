@@ -1,9 +1,10 @@
 package jp.co.youmitsu.myapplication
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.databinding.DataBindingUtil
 import android.databinding.ObservableField
-import android.support.constraint.motion.MotionLayout
+import android.text.SpannableStringBuilder
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.inputmethod.InputMethodManager
@@ -49,30 +50,28 @@ class CustomMotionEditTextLayout : FrameLayout {
         initCallbacks()
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun initCallbacks() {
+        binding.nicknameValue.setOnTouchListener { v, event ->
+            binding.motionLayout.transitionToEnd()
+            focusToEditText()
+            showKeyboard()
+            false
+        }
         binding.editText.setOnFocusChangeListener { v, hasFocus ->
+            ((binding.editText.text as SpannableStringBuilder).toString()).apply {
+                binding.nicknameValue.text = this
+                value = this
+            }
             if (hasFocus) {
                 focusToEditText()
+                showKeyboard()
             } else {
                 binding.motionLayout.transitionToStart()
                 clearFocusOfEditText()
+                hideKeyboard()
             }
         }
-        binding.motionLayout.setTransitionListener(object : MotionLayout.TransitionListener {
-            override fun onTransitionChange(p0: MotionLayout?, p1: Int, p2: Int, p3: Float) {
-            }
-
-            override fun onTransitionCompleted(p0: MotionLayout?, currentId: Int) {
-                when (currentId) {
-                    R.id.start -> {
-                        clearFocusOfEditText()
-                    }
-                    R.id.end -> {
-                        focusToEditText()
-                    }
-                }
-            }
-        })
     }
 
     private fun focusToEditText() = binding.editText.apply {
