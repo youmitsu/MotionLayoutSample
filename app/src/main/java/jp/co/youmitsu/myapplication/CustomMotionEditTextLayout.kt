@@ -27,7 +27,6 @@ class CustomMotionEditTextLayout : FrameLayout {
             _value.set(value)
         }
 
-    //TODO: imm依存させるどうなんだろう
     private val imm: InputMethodManager by lazy {
         context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     }
@@ -54,8 +53,7 @@ class CustomMotionEditTextLayout : FrameLayout {
     private fun initCallbacks() {
         binding.nicknameValue.setOnTouchListener { v, event ->
             binding.motionLayout.transitionToEnd()
-            focusToEditText()
-            showKeyboard()
+            prepareEditTextToShow()
             false
         }
         binding.editText.setOnFocusChangeListener { v, hasFocus ->
@@ -63,26 +61,20 @@ class CustomMotionEditTextLayout : FrameLayout {
                 binding.nicknameValue.text = this
                 value = this
             }
-            if (hasFocus) {
-                focusToEditText()
-                showKeyboard()
-            } else {
+            if (!hasFocus) {
                 binding.motionLayout.transitionToStart()
-                clearFocusOfEditText()
                 hideKeyboard()
             }
         }
     }
 
-    private fun focusToEditText() = binding.editText.apply {
-        requestFocus()
-        setSelection(length())
-    }
-
-    private fun clearFocusOfEditText() = binding.editText.clearFocus()
-
-    private fun showKeyboard() {
-        imm.showSoftInput(binding.editText, InputMethodManager.SHOW_IMPLICIT)
+    private fun prepareEditTextToShow() {
+        if (binding.editText.requestFocus()) {
+            imm.showSoftInput(binding.editText, InputMethodManager.SHOW_IMPLICIT)
+        }
+        binding.editText.apply {
+            setSelection(length())
+        }
     }
 
     private fun hideKeyboard() {
